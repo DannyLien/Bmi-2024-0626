@@ -5,11 +5,19 @@ class Hello {
 
 
 fun main() {
-    val p = Person()
-    p.hello()
-    p.weight = 65.5f
-    p.height = 1.7f
+
+    val p = Person("Jack", 65.5f, 1.7f)
     println(p.bmi())
+    val hank = Person("Hank", 70f, 1.75f)
+    println(p.name + " " + p.bmi())
+    println(hank.name + " " + hank.bmi())
+    p.hello()
+
+//    val p = Person()
+//    p.hello()
+//    p.weight = 65.5f
+//    p.height = 1.7f
+    println("BMI:${p.bmi()}")
 
     /*
         println("Hello kotlin!!")
