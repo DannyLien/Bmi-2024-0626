@@ -1,9 +1,17 @@
 package com.tom.bmi_2024_0626
 
+import kotlin.random.Random
+
 fun main() {
-    val secret = 7
+//    println(Random.nextInt(1, 11))
+//    println((1..10).random())
+//    val secret = 7
+    val secret = (1..10).random()
+    println("secret : $secret")
     var num = 0
-    while (num != secret) {
+//    while (num != secret) {
+    var bingo = false
+    for (i in 1..3) {
         print("Please enter a number(1-10): ")
         val input = readLine()
         num = input?.toIntOrNull() ?: 0
@@ -14,9 +22,12 @@ fun main() {
             println("Smaller")
         } else {
             println("You got it!")
-
+            bingo = true
+            break
         }
     }
-
+    if (!bingo) {
+        println("Failed, the secret is $secret")
+    }
 
 }
