@@ -2,6 +2,22 @@ package com.tom.bmi_2024_0626
 
 
 fun main() {
+    val nums = mutableListOf<Int>(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    nums.shuffle()
+    val secret = nums.removeAt(0)
+    val bomb = nums.removeAt(0)
+    println(nums)
+    println(secret)
+    println(bomb)
+
+    //List
+    val list = mutableListOf<Int>(2, 5, 8)
+    println(list)
+    list.add(13)
+    println(list)
+    list.removeAt(1)
+    println(list)
+
     //Array
     val array = intArrayOf(2, 5, 8)
     println(array[2])
