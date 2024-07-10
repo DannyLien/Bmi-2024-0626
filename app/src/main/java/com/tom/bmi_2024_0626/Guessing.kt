@@ -16,7 +16,20 @@ fun main() {
         val input = readLine()
         num = input?.toIntOrNull() ?: 0
         println("The number you entered: $num")
-        if (num < secret) {
+        var message = when {
+            num < secret -> "Bingger"
+            num > secret -> "Smaler"
+            else -> {
+                bingo = true
+                "You got it!"
+            }
+        }
+        println("$message")
+        if (bingo) {
+            break
+        }
+    }
+       /* if (num < secret) {
             println("Bigger")
         } else if (num > secret) {
             println("Smaller")
@@ -24,8 +37,7 @@ fun main() {
             println("You got it!")
             bingo = true
             break
-        }
-    }
+        }*/
     if (!bingo) {
         println("Failed, the secret is $secret")
     }
