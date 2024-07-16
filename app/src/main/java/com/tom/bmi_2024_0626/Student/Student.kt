@@ -1,4 +1,4 @@
-package Student
+package com.tom.bmi_2024_0626.Student
 
 import android.util.Range
 
@@ -14,7 +14,7 @@ open class Student(val id: String, val name: String, val english: Int = 0, val m
         println("$id\t $name\t $english\t $math\t ${average()}$mark\t ${grading()}")
     }
 
-    fun average() = (english + math) / 2
+    open fun average() = (english + math) / 2
 
     fun grading() = when (average() / 10) {
         9, 10 -> 'A'
