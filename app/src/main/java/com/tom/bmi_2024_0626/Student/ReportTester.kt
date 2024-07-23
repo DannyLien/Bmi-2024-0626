@@ -4,7 +4,7 @@ fun main() {
 
     val reports = listOf<Report>(
         FinanceReport(),
-        HealthReport()
+        HealthReport(),
     )
     for (report in reports){
         report.load()
