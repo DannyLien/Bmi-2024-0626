@@ -8,8 +8,10 @@ class MainActivity2 : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main2)
 
-
-
+        R.id.hello_main
+        R.drawable.pig
+        R.string.ok
+        R.color.messageColor
 
     }
 
