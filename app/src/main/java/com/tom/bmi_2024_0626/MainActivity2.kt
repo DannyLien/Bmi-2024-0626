@@ -2,24 +2,44 @@ package com.tom.bmi_2024_0626
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
+import android.view.View
+import android.widget.Toast
+import androidx.appcompat.app.AlertDialog
 import com.tom.bmi_2024_0626.databinding.ActivityMain2Binding
 
 class MainActivity2 : AppCompatActivity() {
+    private val TAG = MainActivity2::class.java.simpleName
     private lateinit var binding: ActivityMain2Binding
+    val secret = (1..10).random()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_main2)
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+        Toast.makeText(this, "secret:${secret}", Toast.LENGTH_LONG).show()
+    }
 
-//        R.id.hello_main
-//        R.drawable.pig
-//        R.string.ok
-//        R.color.messageColor
-
-
-
+    fun guess(view: View) {
+        if (!binding.number.text.toString().equals("")) {
+            val num = binding.number.text.toString().toInt()
+            Log.d(TAG, "guess: ${num.toString()}")
+            val message = if (num > secret) {
+                "Smaller"
+            }else if(num < secret){
+                "Bigger"
+            }else{
+                "You got it!"
+            }
+            AlertDialog.Builder(this)
+                .setTitle("Info")
+                .setMessage(message)
+                .setPositiveButton("OK", null)
+                .show()
+        } else {
+            Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show()
+        }
     }
 
 }

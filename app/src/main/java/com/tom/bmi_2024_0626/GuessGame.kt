@@ -1,6 +1,10 @@
 package com.tom.bmi_2024_0626
 
 class GuessGame {
+    enum class Status {
+        INIT, BIGGER, SMALL, BINGO
+    }
+
     var secret = (1..10).random()
     var counter = 0
     fun guess(n: Int): Int {
