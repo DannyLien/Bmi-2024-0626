@@ -26,19 +26,19 @@ class MainActivity2 : AppCompatActivity() {
             val num = binding.number.text.toString().toInt()
             Log.d(TAG, "guess: ${num.toString()}")
             val message = if (num > secret) {
-                "Smaller"
+                getString(R.string.smaller)
             }else if(num < secret){
-                "Bigger"
+                getString(R.string.bigger)
             }else{
-                "You got it!"
+                getString(R.string.you_got_it)
             }
             AlertDialog.Builder(this)
-                .setTitle("Info")
+                .setTitle(getString(R.string.info))
                 .setMessage(message)
-                .setPositiveButton("OK", null)
+                .setPositiveButton(R.string.ok, null)
                 .show()
         } else {
-            Toast.makeText(this, "Please enter a number", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, getString(R.string.please_enter_a_number_1_10), Toast.LENGTH_SHORT).show()
         }
     }
 
