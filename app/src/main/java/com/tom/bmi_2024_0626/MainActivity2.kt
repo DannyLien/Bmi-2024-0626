@@ -1,10 +1,12 @@
 package com.tom.bmi_2024_0626
 
 import android.app.GameState
+import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.view.View.OnClickListener
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.tom.bmi_2024_0626.databinding.ActivityMain2Binding
@@ -32,10 +34,20 @@ class MainActivity2 : AppCompatActivity() {
                 else -> getString(R.string.you_got_it)
             }
             binding.counter.text = game.counter.toString()
+            val okLisener = object : DialogInterface.OnClickListener {
+                override fun onClick(p0: DialogInterface?, p1: Int) {
+                    TODO("Not yet implemented")
+                }
+            }
             AlertDialog.Builder(this)
                 .setTitle(getString(R.string.info))
                 .setMessage(message)
                 .setPositiveButton(R.string.ok, null)
+                .setNegativeButton("Replay", { dialog, which ->
+                    Log.d(TAG, "Replay")
+                    game.reset()
+                    binding.counter.text = game.counter.toString()
+                })
                 .show()
         } else {
             Toast.makeText(this, getString(R.string.please_enter_a_number_1_10), Toast.LENGTH_SHORT)
