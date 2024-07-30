@@ -12,6 +12,7 @@ import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.tom.bmi_2024_0626.databinding.ActivityMain2Binding
+import com.tom.bmi_2024_0626.vending.GameStatus
 import com.tom.bmi_2024_0626.vending.GuessViewModel
 
 class MainActivity2 : AppCompatActivity() {
@@ -30,8 +31,29 @@ class MainActivity2 : AppCompatActivity() {
         viewModel.counter.observe(this, Observer { counter ->
             binding.counter.text = counter.toString()
         })
-
-        Toast.makeText(this, "secret:${game.secret}", Toast.LENGTH_LONG).show()
+        viewModel.status.observe(this, Observer { status ->
+            val message = when (status) {
+                GameStatus.BIGGER -> getString(R.string.bigger)
+                GameStatus.SMALLER -> getString(R.string.smaller)
+                GameStatus.INIT -> ""
+                else -> getString(R.string.you_got_it)
+            }
+            if (status != GameStatus.INIT) {
+                AlertDialog.Builder(this)
+                    .setTitle(getString(R.string.info))
+                    .setMessage(message)
+                    .setPositiveButton(R.string.ok, null)
+                    .setNegativeButton("Replay", { dialog, which ->
+                        Log.d(TAG, "Replay")
+                        viewModel.reset()
+                        binding.number.text.clear()
+                    })
+                    .show()
+            }
+        })
+        viewModel.secretData.observe(this, Observer { secret ->
+            Toast.makeText(this, "secret:${secret}", Toast.LENGTH_LONG).show()
+        })
 
     }
 
