@@ -28,10 +28,10 @@ class MainActivity2 : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel = ViewModelProvider(this).get(GuessViewModel::class.java)
-        viewModel.counter.observe(this, Observer { counter ->
+        viewModel.counter.observe(this) { counter ->
             binding.counter.text = counter.toString()
-        })
-        viewModel.status.observe(this, Observer { status ->
+        }
+        viewModel.status.observe(this) { status ->
             val message = when (status) {
                 GameStatus.BIGGER -> getString(R.string.bigger)
                 GameStatus.SMALLER -> getString(R.string.smaller)
@@ -43,17 +43,17 @@ class MainActivity2 : AppCompatActivity() {
                     .setTitle(getString(R.string.info))
                     .setMessage(message)
                     .setPositiveButton(R.string.ok, null)
-                    .setNegativeButton("Replay", { dialog, which ->
+                    .setNegativeButton("Replay") { dialog, which ->
                         Log.d(TAG, "Replay")
                         viewModel.reset()
                         binding.number.text.clear()
-                    })
+                    }
                     .show()
             }
-        })
-        viewModel.secretData.observe(this, Observer { secret ->
+        }
+        viewModel.secretData.observe(this) { secret ->
             Toast.makeText(this, "secret:${secret}", Toast.LENGTH_LONG).show()
-        })
+        }
 
     }
 
