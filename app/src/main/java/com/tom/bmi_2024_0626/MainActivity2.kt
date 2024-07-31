@@ -84,9 +84,15 @@ class MainActivity2 : AppCompatActivity() {
         val intent = Intent(this, NicknameActivity::class.java)
         intent.putExtra("EXTRA_LEVEL", 3)
         intent.putExtra("NAME", "Hank")
-//        startActivity(intent)
-//        startActivityForResult(intent, NICKNAME_REQ)
         requestNickname.launch(intent)
+
+        Intent(this, NicknameActivity::class.java).apply {
+            putExtra("A", "ABC")
+            putExtra("B", "Testing")
+        }.also {
+            requestNickname.launch(it)
+        }
+
     }
 
     //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
