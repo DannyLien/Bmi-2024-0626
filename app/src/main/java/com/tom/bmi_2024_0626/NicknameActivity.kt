@@ -3,6 +3,7 @@ package com.tom.bmi_2024_0626
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import com.tom.bmi_2024_0626.databinding.ActivityNicknameBinding
 
 class NicknameActivity : AppCompatActivity() {
@@ -19,4 +20,12 @@ class NicknameActivity : AppCompatActivity() {
         Log.d(TAG, "onCreate: $level, $name")
 
     }
+
+    fun save(view: View) {
+        val nickname = binding.edNickname.text.toString()
+        setResult(RESULT_OK, intent.putExtra("NICK", nickname))
+        finish()
+
+    }
+
 }
