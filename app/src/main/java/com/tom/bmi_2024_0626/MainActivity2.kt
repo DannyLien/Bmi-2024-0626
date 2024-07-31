@@ -44,6 +44,8 @@ class MainActivity2 : AppCompatActivity() {
         binding = ActivityMain2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        Log.d(TAG, "onCreate: ")
+
         viewModel = ViewModelProvider(this).get(GuessViewModel::class.java)
         viewModel.counter.observe(this) { counter ->
             binding.counter.text = counter.toString()
@@ -87,7 +89,7 @@ class MainActivity2 : AppCompatActivity() {
         requestNickname.launch(intent)
     }
 
-//    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+    //    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
 //        super.onActivityResult(requestCode, resultCode, data)
 //        Log.d(TAG, "requestCode: ${requestCode}")
 //        if (requestCode == NICKNAME_REQ) {
@@ -98,4 +100,36 @@ class MainActivity2 : AppCompatActivity() {
 //        }
 //
 //    }
+
+
+    override fun onRestart() {
+        super.onRestart()
+        Log.d(TAG, "onRestart: ")
+    }
+
+    override fun onResume() {
+        super.onResume()
+        Log.d(TAG, "onResume: ")
+    }
+
+    override fun onPause() {
+        super.onPause()
+        Log.d(TAG, "onPause: ")
+    }
+
+    override fun onStart() {
+        super.onStart()
+        Log.d(TAG, "onStart: ")
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d(TAG, "onStop: ")
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        Log.d(TAG, "onDestroy: ")
+    }
+
 }
