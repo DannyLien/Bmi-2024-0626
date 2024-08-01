@@ -107,7 +107,6 @@ class MainActivity2 : AppCompatActivity() {
 //
 //    }
 
-
     override fun onRestart() {
         super.onRestart()
         Log.d(TAG, "onRestart: ")
