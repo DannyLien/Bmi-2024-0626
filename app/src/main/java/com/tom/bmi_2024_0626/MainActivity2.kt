@@ -13,6 +13,9 @@ import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.room.Room
+import com.tom.bmi_2024_0626.data.GameDatabase
+import com.tom.bmi_2024_0626.data.Record
 import com.tom.bmi_2024_0626.databinding.ActivityMain2Binding
 import com.tom.bmi_2024_0626.vending.GameStatus
 import com.tom.bmi_2024_0626.vending.GuessViewModel
@@ -73,7 +76,20 @@ class MainActivity2 : AppCompatActivity() {
         viewModel.secretData.observe(this) { secret ->
             Toast.makeText(this, "secret:${secret}", Toast.LENGTH_LONG).show()
         }
-
+        //Room Test
+        val database = Room.databaseBuilder(
+            this,
+            GameDatabase::class.java, "game.db"
+        )
+            .build()
+        val record = Record("Hank", 5)
+        Thread() {
+//            database.recordDao().insert(record)
+            val list = database.recordDao().getAll()
+            list.forEach { r ->
+                Log.d(TAG, "onCreate: ${r.nickname}")
+            }
+        }.start()
     }
 
     fun guess(view: View) {
